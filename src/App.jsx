@@ -1,71 +1,137 @@
-function App() {
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Spline from '@splinetool/react-spline'
+
+const colors = {
+  offBlack: '#212629',
+  heritageBlue: '#2E4F5F',
+  sun: '#FFAB40',
+  thunderGrey: '#78909C',
+  white: '#FFFFFF'
+}
+
+function Hero() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]"></div>
-
-      <div className="relative min-h-screen flex items-center justify-center p-8">
-        <div className="max-w-2xl w-full">
-          {/* Header with Flames icon */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center mb-6">
-              <img
-                src="/flame-icon.svg"
-                alt="Flames"
-                className="w-24 h-24 drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]"
-              />
-            </div>
-
-            <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
-              Flames Blue
-            </h1>
-
-            <p className="text-xl text-blue-200 mb-6">
-              Build applications through conversation
-            </p>
-          </div>
-
-          {/* Instructions */}
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 shadow-xl mb-6">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                1
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Describe your idea</h3>
-                <p className="text-blue-200/80 text-sm">Use the chat panel on the left to tell the AI what you want to build</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Watch it build</h3>
-                <p className="text-blue-200/80 text-sm">Your app will appear in this preview as the AI generates the code</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Refine and iterate</h3>
-                <p className="text-blue-200/80 text-sm">Continue the conversation to add features and make changes</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="text-center">
-            <p className="text-sm text-blue-300/60">
-              No coding required • Just describe what you want
-            </p>
+    <section className="relative min-h-[70vh] flex items-center overflow-hidden" style={{ backgroundColor: colors.offBlack }}>
+      <div className="absolute inset-0" aria-hidden>
+        <Spline scene="https://prod.spline.design/41MGRk-UDPKO-l6W/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#212629]/60 to-[#212629] pointer-events-none" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10">
+        <div>
+          <h1 className="text-white text-4xl md:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Lexend Deca, Inter, sans-serif' }}>
+            Sprint Packages for High‑Velocity Teams
+          </h1>
+          <p className="mt-4 text-[#78909C] text-lg" style={{ fontFamily: 'Lexend Deca, Inter, sans-serif' }}>
+            Choose a plan, schedule your sprint, and get a certified facilitator with a proven playbook.
+          </p>
+          <div className="mt-8 flex gap-4">
+            <Link to="#pricing" className="inline-flex items-center justify-center px-5 py-3 rounded-xl" style={{ backgroundColor: colors.sun, color: colors.offBlack, fontFamily: 'Lexend Deca, Inter, sans-serif', fontWeight: 700 }}>
+              View Pricing
+            </Link>
+            <Link to="/checkout" className="inline-flex items-center justify-center px-5 py-3 rounded-xl border" style={{ borderColor: colors.sun, color: colors.white, fontFamily: 'Lexend Deca, Inter, sans-serif' }}>
+              Book a Sprint
+            </Link>
           </div>
         </div>
       </div>
+    </section>
+  )
+}
+
+const plans = [
+  {
+    id: 'starter',
+    name: 'Sprint Starter',
+    price: 1500,
+    participants: 'Up to 12 participants',
+    features: [
+      '1-day design sprint',
+      'Certified facilitator',
+      'Workshop materials',
+      'Post-sprint summary'
+    ]
+  },
+  {
+    id: 'team',
+    name: 'Team Development',
+    price: 2800,
+    participants: 'Up to 24 participants',
+    features: [
+      '2-day immersive sprint',
+      'Advanced playbooks',
+      'Team retrospectives',
+      'Follow-up coaching'
+    ]
+  },
+  {
+    id: 'enterprise',
+    name: 'Enterprise Excellence',
+    price: null,
+    participants: '50+ participants',
+    features: [
+      'Custom multi-team program',
+      'Exec alignment workshops',
+      'Dedicated success manager',
+      'Onsite + virtual options'
+    ]
+  }
+]
+
+function PricingCard({ plan }) {
+  return (
+    <div className="group relative rounded-2xl p-6 md:p-8 transition-transform duration-300" style={{ backgroundColor: colors.heritageBlue, boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}>
+      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ boxShadow: '0 0 0 2px #FFAB40, 0 10px 40px rgba(255,171,64,0.25)' }} aria-hidden />
+      <div className="relative">
+        <h3 className="text-white text-2xl font-semibold" style={{ fontFamily: 'Lexend Deca, Inter, sans-serif' }}>{plan.name}</h3>
+        <p className="mt-1 text-[#78909C]" style={{ fontFamily: 'Lexend Deca, Inter, sans-serif' }}>{plan.participants}</p>
+        <div className="mt-6 flex items-baseline gap-2">
+          <span className="text-white font-bold" style={{ fontSize: 48, fontFamily: 'Lexend Deca, Inter, sans-serif' }}>
+            {plan.price ? `$${plan.price.toLocaleString()}` : 'Custom'}
+          </span>
+          {plan.price && <span className="text-[#78909C]">USD</span>}
+        </div>
+        <ul className="mt-6 space-y-3">
+          {plan.features.map((f, idx) => (
+            <li key={idx} className="flex items-start gap-3">
+              <span className="inline-flex w-7 h-7 rounded-full items-center justify-center" style={{ backgroundColor: 'rgba(255,171,64,0.4)' }}>
+                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: colors.sun }} />
+              </span>
+              <span className="text-white/90" style={{ fontFamily: 'Lexend Deca, Inter, sans-serif' }}>{f}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8">
+          <Link to={`/checkout?package=${plan.id}`} className="inline-flex w-full items-center justify-center px-5 py-3 rounded-xl font-semibold transition-transform duration-200 hover:scale-[1.02]" style={{ backgroundColor: colors.sun, color: colors.offBlack, fontFamily: 'Lexend Deca, Inter, sans-serif' }}>
+            Select Package
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function PricingSection() {
+  return (
+    <section id="pricing" className="relative py-16 md:py-24" style={{ backgroundColor: colors.offBlack }}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-10 md:mb-14">
+          <h2 className="text-white text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Lexend Deca, Inter, sans-serif' }}>Pricing</h2>
+          <p className="text-[#78909C] mt-2" style={{ fontFamily: 'Lexend Deca, Inter, sans-serif' }}>Transparent plans designed for different team sizes.</p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {plans.map(p => <PricingCard key={p.id} plan={p} />)}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function App() {
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: colors.offBlack }}>
+      <Hero />
+      <PricingSection />
     </div>
   )
 }
